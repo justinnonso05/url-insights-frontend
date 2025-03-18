@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const password = document.getElementById("login-password").value;
         
         try {
-            const response = await fetch("http://localhost:8000/users/login/", {
+            const response = await fetch("https://url-insights.onrender.com/users/login/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password })
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (response.ok) {
                 localStorage.setItem("access_token", data.access_token);
                 showSuccess("Login successful!");
-                window.location.href = "http://127.0.0.1:5500/Frontend/index.html";
+                window.location.href = "https://justinnonso05.github.io/url-insights-frontend/";
             } else {
                 showError(data.detail || "Invalid email or password.");
             }
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         
         try {
-            const response = await fetch("http://localhost:8000/users/register/", {
+            const response = await fetch("https://url-insights.onrender.com/users/register/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password })
