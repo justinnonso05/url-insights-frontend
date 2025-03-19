@@ -112,31 +112,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Render Saved Summaries
-    // Render Saved Summaries
-function renderSummaries(summaries) {
-    const summaryList = document.getElementById("summary-list");
-    summaryList.innerHTML = "";
+    function renderSummaries(summaries) {
+        const summaryList = document.getElementById("summary-list");
+        summaryList.innerHTML = "";
 
-    // Sort summaries by date in descending order
-    summaries.sort((a, b) => new Date(b.date) - new Date(a.date));
+        // Sort summaries by date in descending order
+        summaries.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    if (summaries.length === 0) {
-        summaryList.innerHTML = `<p>No saved summaries found.</p>`;
-        return;
-    }
-    summaries.forEach(({ url, content, date }) => {
-        const item = document.createElement("div");
-        item.classList.add("summary-item");
-        item.innerHTML = `
-            <a href="#" class="summary-url">${url}</a>
-            <p class="summary-text">${content.substring(0, 80).trim()}${content.length > 50 ? '...' : ''}</p>
-        `;
-        item.addEventListener("click", () => {
-            displaySummary(url, content, true);
+        if (summaries.length === 0) {
+            summaryList.innerHTML = `<p>No saved summaries found.</p>`;
+            return;
+        }
+        summaries.forEach(({ url, content, date }) => {
+            const item = document.createElement("div");
+            item.classList.add("summary-item");
+            item.innerHTML = `
+                <a href="#" class="summary-url">${url}</a>
+                <p class="summary-text">${content.substring(0, 80).trim()}${content.length > 50 ? '...' : ''}</p>
+            `;
+            item.addEventListener("click", () => {
+                displaySummary(url, content, true);
+            });
+            summaryList.appendChild(item);
         });
-        summaryList.appendChild(item);
-    });
-}
+    }
 
     // Sidebar Toggle Functionality
     function toggleSidebar() {
