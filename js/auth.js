@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (response.ok) {
                 localStorage.setItem("access_token", data.access_token);
                 showSuccess("Login successful!");
-                window.location.href = "https://justinnonso05.github.io/url-insights-frontend/";
+                window.location.href = "https://url-insights.vercel.app/";
             } else {
                 showError(data.detail || "Invalid email or password.");
             }

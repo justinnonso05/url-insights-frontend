@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginNotice = document.getElementById("login-notice");
 
     // API Endpoints
-    const API_BASE = "https://url-insights.onrender.com/api";
+    const API_BASE1 = "https://url-insights.onrender.com/api";
+    const API_BASE = "http://localhost:8000/api";
     const SUMMARIZE_URL = `${API_BASE}/summarize`;
     const GET_SUMMARIES_URL = `${API_BASE}/my-summaries`;
 
