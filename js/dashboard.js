@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // API Endpoints
     const API_BASE = "https://url-insights.onrender.com/api";
-    const API_BASE1 = "http://localhost:8000/api";
     const SUMMARIZE_URL = `${API_BASE}/summarize`;
     const GET_SUMMARIES_URL = `${API_BASE}/my-summaries`;
 
@@ -73,17 +72,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Display Summary
-    function displaySummary(url, summary, saved) {
+    function displaySummary(url, summaryObj, saved) {
+        const summaryText = summaryObj.summary;  // extract the actual string
+    
         summaryUrl.textContent = url;
-        summaryContent.textContent = summary;
+        summaryContent.textContent = summaryText;
         summaryLink.href = url;
         summaryLink.textContent = url;
         summaryDate.textContent = new Date().toLocaleString();
         summaryContainer.classList.remove("hidden");
-
-        // Store the summary in localStorage
-        localStorage.setItem("current_summary", JSON.stringify({ url, summary, date: new Date().toLocaleString() }));
+    
+        // Store the flat summary text
+        localStorage.setItem("current_summary", JSON.stringify({ url, summary: summaryText, date: new Date().toLocaleString() }));
     }
+    
 
     // Show Error Message
     function showError(message) {
