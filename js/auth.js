@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const successContainer = document.getElementById("success-container");
     const successMessage = document.getElementById("success-message");
 
-    const BASE_URL = "http://localhost:8000"; // FastAPI backend URL
+    const BASE_URL = "https://url-insights.onrender.com"; // FastAPI backend URL
     
     function showError(message) {
         errorMessage.textContent = message;
