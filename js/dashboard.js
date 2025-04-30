@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginNotice = document.getElementById("login-notice");
 
     // API Endpoints
-    const API_BASE = "https://url-insights.onrender.com/api";
+    const API_BASE = "http://localhost:8000/api";
     const SUMMARIZE_URL = `${API_BASE}/summarize`;
     const GET_SUMMARIES_URL = `${API_BASE}/my-summaries`;
 
@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
             });
             const data = await response.json();
+            console.log(data); // Debugging line
             
             if (!response.ok) throw new Error(data.detail || "Failed to summarize");
             
@@ -72,9 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Display Summary
-    function displaySummary(url, summaryObj, saved) {
-        const summaryText = summaryObj.summary;  // extract the actual string
-    
+    function displaySummary(url, summaryText, saved) {
         summaryUrl.textContent = url;
         summaryContent.textContent = summaryText;
         summaryLink.href = url;
@@ -83,9 +82,12 @@ document.addEventListener("DOMContentLoaded", () => {
         summaryContainer.classList.remove("hidden");
     
         // Store the flat summary text
-        localStorage.setItem("current_summary", JSON.stringify({ url, summary: summaryText, date: new Date().toLocaleString() }));
+        localStorage.setItem("current_summary", JSON.stringify({
+            url,
+            summary: summaryText,
+            date: new Date().toLocaleString()
+        }));
     }
-    
 
     // Show Error Message
     function showError(message) {
